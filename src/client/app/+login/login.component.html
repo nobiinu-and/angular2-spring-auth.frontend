@@ -1,0 +1,17 @@
+<form (submit)="login()">
+  <div>
+    <input [(ngModel)]="userName" name="userName" placeholder="ユーザ名">
+    <input [(ngModel)]="password" name="password" placeholder="パスワード" type="password">
+    <button type="submit">ログイン</button>
+  </div>
+  <div>
+    <span style='color:red;'>{{errorMessage}}</span>
+  </div>
+</form>
+
+<h2>利用可能なユーザとパスワード</h2>
+<ul>
+  <li>user1/u</li>
+  <li>user2/u</li>
+  <li>admin/a</li>
+</ul>

@@ -1,0 +1,37 @@
+<p>
+この画面はログインしないと見ることができません。<br>
+ログインしているユーザ: {{authService.currentUser.name}} 
+</p>
+<p style='color:red;' *ngIf="hasError()">
+  エラーが発生しました<br>
+  エラーステータス: {{error.status}}
+  エラーメッセージ: {{error.description.message}}
+</p>
+<div>
+  <h2>ユーザ一覧</h2>
+  <button (click)="showUsers()">取得 (Admin以外はエラー)</button>
+  <div *ngIf="users">
+    <h2>取得した結果</h2>
+    <ul>
+      <li *ngFor="let user of users">{{user.id}} : {{user.name}}</li>
+    </ul>
+  </div>
+</div>
+<hr>
+<div>
+  <h2>ユーザ</h2>
+  <form (submit)="showUser()">
+    <div>
+      <input [(ngModel)]="userId" name="userId" placeholder="ユーザID">
+      <button type="submit">取得 (誰でもOK)</button>
+    </div>
+  </form>
+  <p>
+  9, 10, 99 はエラーメッセージが表示されます。
+  </p>
+  <div *ngIf="user">
+    <h2>取得した結果</h2>
+    id: {{user.id}}
+    name: {{user.name}}
+  </div>
+</div>
