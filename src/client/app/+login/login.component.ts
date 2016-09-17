@@ -24,16 +24,7 @@ export class LoginComponent {
       .subscribe(
         result => {
           console.log('LoginComponent::login result:' + result);
-          this.userService.get('1') // subscribeの中でsubscribeが呼べるかテストして見てるだけ
-            .subscribe(
-              result => {
-                console.log(result);
-                this.router.navigate(['/member-only']);
-              },
-              error => {
-                this.setError(error);
-              }
-            );
+          this.router.navigate(['/member-only']);
         },
         error  => {
           this.setError(error);

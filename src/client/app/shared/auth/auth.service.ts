@@ -30,14 +30,26 @@ export class AuthService {
       });
   }
 
+  reLogin(): Observable<boolean> {
+    return this.http.get('http://localhost:8080/sample/api')
+      .map((res: Response) => {
+        return this.successHandler(res);
+      })
+      .catch((error: Response) => {
+        return this.errorHandler(error);
+      });
+  }
+
   successHandler(res: Response) {
+    console.log('AuthService::successHandler called');
     console.log(res);
-    this.isLoggedIn = res.status === 200;
+    this.isLoggedIn = true;
     this.currentUser = res.json();
     return this.isLoggedIn;
   }
 
-  errorHandler(res: Response) {
+  errorHandler(res: Response): Observable<boolean> {
+    console.log('AuthService::errorHandler called');
     console.log(res);
     this.isLoggedIn = false;
     this.currentUser = null;
