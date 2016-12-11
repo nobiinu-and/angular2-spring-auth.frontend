@@ -40,6 +40,16 @@ export class AuthService {
       });
   }
 
+  logout(): Observable<boolean> {
+    return this.http.get('http://localhost:8080/sample/api/logout')
+      .map((res: Response) => {
+        return this.successHandler(res);
+      })
+      .catch((error: Response) => {
+        return this.errorHandler(error);
+      });
+  }
+
   successHandler(res: Response) {
     console.log('AuthService::successHandler called');
     console.log(res);

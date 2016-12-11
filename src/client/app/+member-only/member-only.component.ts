@@ -44,6 +44,19 @@ export class MemberOnlyComponent {
       );
   }
 
+  logout() {
+    this.clearError();
+    this.authService.logout()
+      .subscribe(
+        result => {
+          this.user = result;
+        },
+        error => {
+          this.handleError(error);
+        }
+      );
+  }
+
   clearError() {
     this.error = null;
   }
